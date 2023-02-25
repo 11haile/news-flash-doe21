@@ -1,7 +1,10 @@
 locals {
-  region = "eu-west1"
+  region    = "eu-west1"
 }
 
-module "digitalocean_kubernetes_cluster" {
-  
+
+module "kubernetes-cluster" {
+  source    = "../kubernetes-cluster"
+  name      = var.name
+  region    = var.region
 }
