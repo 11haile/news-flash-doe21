@@ -1,0 +1,35 @@
+# create a route /
+@app.route("/api/news", methods=['GET'])
+# Def function
+def news():
+    q            = request.args.get('q')
+    from_date    = request.args.get('from_date')
+    
+    payload = {
+        'sortBy': 'popularity&',
+        'apiKey': ''
+    } 
+
+    if q:
+        payload['q'] = q
+    
+    if from_date:
+        payload['from'] = from_date
+    
+    response = requests.get(news_api_url, params=payload)
+
+    if response.status_code == 200:
+        data = response.json()
+        return jsonify(data)
+    else:
+        return jsonify({'error': 'Error fetching news'})
+
+if __name__ == '__main__':
+    app.run(debug=True)    
+
+
+
+ <form action="/data" method = "POST">
+        <p>Keyword <input type = "text" name = "keyword" /></p>
+        <p>Date <input type = "text" name = "date" /></p>
+        <p><input type = "submit" value = "submit" /></p>
