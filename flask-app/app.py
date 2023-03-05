@@ -11,7 +11,7 @@ def get_news(q=None, from_date=None):
     payload = {
         'sortBy': 'popularity',
         'pageSize': 10,
-        'apiKey': ''
+        'apiKey': 'a15fbc057aa04e399b3b128a57406996'
     }
     
     if q:
@@ -28,18 +28,18 @@ def get_news(q=None, from_date=None):
     else:
         return {'error': 'Error fetching news'}
 
-@app.route('/index/')
-def index():
-    data = get_news(q="tesla", from_date="2023-02-24")
-    print(data)
-    
-    return render_template('index.html', data = data)
-
-@app.route('/form/')
+@app.route('/form/', methods = ['POST', 'GET'])
 def form():
     data = get_news()
     print(data)
     return render_template('form.html',data = data)
+
+@app.route('/index/', methods = ['POST', 'GET'])
+def index():
+    data = get_news(q="tesla", from_date="2023-02-10")
+    print(data)
+    
+    return render_template('index.html', data = data)
  
  
 @app.route('/data/', methods = ['POST', 'GET'])
