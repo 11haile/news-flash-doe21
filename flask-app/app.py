@@ -50,10 +50,12 @@ def form():
 
 @app.route('/index/', methods = ['POST', 'GET'])
 def index():
-    data = get_news()
-    print(data)
+    variable = request.form['q', 'from_date']
     
-    return render_template('index.html', data = data)
+    data = get_news('form.html', data = data, q='q',from_date='from_date')
+    # print(data)
+    
+    return render_template('index.html',variable, data = data)
  
  
 @app.route('/data/', methods = ['POST', 'GET'])
@@ -63,7 +65,7 @@ def data():
     if request.method == 'POST':
         form_data = request.form
     
-        return render_template('data.html',form_data = form_data)
+        return render_template('data.html',form_data = form_data, data = data)
  
 
 

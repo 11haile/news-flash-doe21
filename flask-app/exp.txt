@@ -1,0 +1,7 @@
+Sure! @app.route('/api/news/blabla', methods=['GET']) is a decorator that specifies a new route for the Flask web application. In this case, the new route is /api/news/blabla and the method for this route is GET.
+
+When a user sends a GET request to this route, the Flask application will trigger the news function defined below the decorator. This function reads the query parameters q and from_date from the request, and based on those parameters, it fetches news articles from an external API using the get_news function defined earlier in the code.
+
+If the q parameter is provided, the function fetches news articles containing the provided query string. If the from_date parameter is provided, the function fetches news articles published after the provided date. If neither parameter is provided, the function fetches the top 10 news articles from the API.
+
+Finally, the function returns the news articles in JSON format using the jsonify function from Flask. This allows the client to easily consume the data in their own application.
