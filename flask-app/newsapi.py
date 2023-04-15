@@ -1,25 +1,27 @@
 import requests
-
-API_KEY = 'a15fbc057aa04e399b3b128a57406996'
-BASE_URL = 'https://newsapi.org/v2/everything?'
+import os
 
 def get_news(q=None, from_date=None):
-    payload = {
-        'sortBy': 'popularity',
+    API_KEY = os.environ.get('NEWS_API_KEY') # Replace with your API key if not using environment variable
+    url = 'https://newsapi.org/v2/everything'
+
+    # Default parameters
+    params = {
+        'apiKey': API_KEY,
         'pageSize': 10,
-        'apiKey': API_KEY
+        'sortBy': 'publishedAt',
+        'language': 'en',
     }
-    
+
+    # Add query parameters based on user input
     if q:
-        payload['q'] = q
-
+        params['q'] = q
     if from_date:
-        payload['from'] = from_date
+        params['from'] = from_date
 
-    response = requests.get(BASE_URL, params=payload)
+    response = requests.get(url, params=params)
 
     if response.status_code == 200:
-        data = response.json()
-        return data
+        return response.json()
     else:
-        return {'error': 'Error fetching news'}
+        raise Exception(f"Error fetching news: {response.status_code}")

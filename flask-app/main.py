@@ -1,11 +1,16 @@
 # Import Flask
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, redirect
 import requests
 import json
 from newsapi import get_news
 
 # Create an app instance
 app = Flask(__name__)
+
+
+@app.route('/')
+def home():
+    return redirect('/form/')
 
 @app.route('/form/', methods=['POST', 'GET'])
 def form():
