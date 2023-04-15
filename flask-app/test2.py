@@ -69,25 +69,5 @@ def data():
  
 
 
-if __name__ == '__app__':
+if __name__ == '__main__':
     app.run(debug=True)
-# @app.route('/api/news/blabla', methods=['GET'])
-# def news():
-#     q = request.args.get('q')
-#     from_date = request.args.get('from_date')
-
-#     if not q and not from_date:
-#         return jsonify({'error': 'You must provide at least one query parameter (q or from_date)'})
-
-#     if q and from_date:
-#         return jsonify({'error': 'You cannot provide both q and from_date parameters'})
-
-#     if q:
-#         data = get_news(q=q)
-#     else:
-#         data = get_news(from_date=from_date)
-
-#     return jsonify(data)
-
-# if __name__ == '__main__':
-#     app.run(debug=True)
