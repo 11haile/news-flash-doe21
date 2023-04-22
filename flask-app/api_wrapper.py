@@ -1,31 +1,18 @@
 import os
 import requests
+import base64
+from settings import get_settings
 
-from newsapi import NewsApiClient
+settings = get_settings()
+#from basse import base64_string
 
 url = 'https://newsapi.org/v2/everything?'
-
-# newsapi = NewsApiClient(api_key='a15fbc057aa04e399b3b128a57406996')
-
-# def get_news(q=None, from_date=None):
-#     newsapi = NewsApiClient(api_key='a15fbc057aa04e399b3b128a57406996')
-
-#     top_headlines = newsapi.get_top_headlines(language='en',
-#                                           sort_by='relevancy',
-#                                           page=1)
-
-#     if top_headlines['status'] == 'ok':
-#         return top_headlines
-#     else:
-#         raise Exception(f"Error fetching news: {top_headlines['status']}")
-
-
 
 def get_news(q=None, from_date=None):
     payload = {
         'sortBy': 'popularity',
         'pageSize': 10,
-        'apiKey': 'a15fbc057aa04e399b3b128a57406996'
+        'apiKey': settings.api_key
     }
     
     if q:
@@ -41,6 +28,3 @@ def get_news(q=None, from_date=None):
         return data
     else:
         return {'error': 'Error fetching news'}
-
-
-
