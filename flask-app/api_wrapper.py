@@ -1,10 +1,7 @@
-import os
 import requests
-import base64
 from settings import get_settings
 
 settings = get_settings()
-#from basse import base64_string
 
 url = 'https://newsapi.org/v2/everything?'
 

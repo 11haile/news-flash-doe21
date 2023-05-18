@@ -60,3 +60,16 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
+
+.title {
+  background: linear-gradient(to left, violet, indigo, blue, red);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline;
+}
+
+.no-articles {
+  color: yellow;
+}

@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-service
+  namespace: argocd
+spec:
+  project: news-flash
+  source:
+    repoURL: https://github.com/11haile/ex-arbete.git
+    targetRevision: Main
+    path: ex-arbete/cluster/minikube.yaml
+  destination:
+    namespace: argocd-service
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated: {}
