@@ -4,11 +4,11 @@ metadata:
   name: argocd-service
   namespace: argocd
 spec:
-  project: ex-arbete
+  project: news-flash
   source:
     repoURL: https://github.com/11haile/ex-arbete.git
     targetRevision: main
-    path: cluster/minikube.yaml
+    path: cluster/
   destination:
     namespace: argocd-service
     server: https://kubernetes.default.svc
