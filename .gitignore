@@ -169,4 +169,4 @@ flask-app/basse.py
 flask-app/argocd-cm.yaml
 flask-app/minikube-linux-amd64
 flask-app/requirements.txt
-cluster/
+
