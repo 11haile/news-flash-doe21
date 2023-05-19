@@ -1,0 +1,60 @@
+# 
+
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: news-flash-service
+spec:
+  selector:
+    app: flash-app-service
+  ports:
+    - protocol: "TCP"
+      port: 5000
+      targetPort: 5000
+  type: LoadBalancer
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: argocd-service
+spec:
+  selector:
+    app: argocd-service
+  ports:
+    - protocol: "TCP"
+      port: 5000
+      targetPort: 5000
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flash-app
+spec:
+  selector:
+    matchLabels:
+      app: flash-app-service
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: flash-app-service
+    spec:
+      containers:
+        - name: flash-app-service
+          image: docker.io/semha/ex-arbete:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+          env:
+            - name: ARGOCD_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: argocd-secret
+                  key: password
+---
