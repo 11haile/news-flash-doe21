@@ -8,7 +8,7 @@ metadata:
   name: news-flash-service
 spec:
   selector:
-    app: flash-app-service
+    app: news-flash-service
   ports:
     - protocol: "TCP"
       port: 5000
@@ -30,6 +30,7 @@ spec:
       targetPort: 5000
   type: LoadBalancer
 
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -39,7 +40,7 @@ spec:
   selector:
     matchLabels:
       app: flash-app-service
-  replicas: 5
+  replicas: 2
   template:
     metadata:
       labels:
@@ -52,3 +53,61 @@ spec:
           ports:
             - containerPort: 5000
 ---
+
+
+
+# kind: Pod
+# apiVersion: v1
+# metadata:
+#   name: flash-name
+#   labels:
+#     app: flash-app
+# spec:
+#   containers:
+#     - name: flash-container
+#       image: 'docker.io/semha/ex-arbete:latest'
+# ---
+# kind: Service
+# apiVersion: v1
+# metadata:
+#   name: flash-service
+# spec:
+#   selector:
+#     app: flash-app
+#   ports:
+#     - port: 8080
+# ---
+
+# kind: Service
+# apiVersion: v1
+# metadata:
+#   name: argocd-name
+# spec:
+#   selector:
+#     app: bar
+#   ports:
+#     - port: 8080
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: example-ingress
+# spec:
+#   rules:
+#     - http:
+#         paths:
+#           - pathType: Prefix
+#             path: /foo
+#             backend:
+#               service:
+#                 name: foo-service
+#                 port:
+#                   number: 8080
+#           - pathType: Prefix
+#             path: /bar
+#             backend:
+#               service:
+#                 name: bar-service
+#                 port:
+#                   number: 8080
+# ---

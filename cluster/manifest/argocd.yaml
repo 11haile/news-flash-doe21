@@ -6,7 +6,7 @@ metadata:
 spec:
   project: news-flash
   source:
-    repoURL: https://github.com/11haile/ex-arbete.git
+    repoURL: https://github.com/11haile/ex-arbete-doe21
     targetRevision: main
     path: cluster/
   destination:
@@ -21,20 +21,19 @@ metadata:
   name: example-ingress
 spec:
   rules:
-    - http:
-        paths:
-          - pathType: Prefix
-            path: /foo
-            backend:
-              service:
-                name: foo-service
-                port:
-                  number: 8080
-          - pathType: Prefix
-            path: /bar
-            backend:
-              service:
-                name: bar-service
-                port:
-                  number: 8080
----
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/news-flash"
+        backend:
+          service:
+            name: news-flash-service
+            port:
+              number: 5000
+      - pathType: Prefix
+        path: "/argocd"
+        backend:
+          service:
+            name: argocd-service
+            port:
+              number: 5000
