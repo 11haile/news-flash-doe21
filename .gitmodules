@@ -1,0 +1,3 @@
+[submodule "news-flash"]
+	path = news-flash
+	url = https://github.com/11haile/news-flash.git

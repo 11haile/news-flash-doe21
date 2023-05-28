@@ -10,6 +10,8 @@ settings = get_settings()
 # Create an app instance
 app = Flask(__name__)
 
+# test
+
 @app.route('/')
 def home():
     return redirect('/form/')
