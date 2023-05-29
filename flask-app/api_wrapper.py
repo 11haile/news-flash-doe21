@@ -9,7 +9,7 @@ def get_news(q=None, from_date=None):
     payload = {
         'sortBy': 'popularity',
         'pageSize': 10,
-        'apiKey': settings.api_key
+        'apiKey': settings.news_api_key
     }
     
     if q:

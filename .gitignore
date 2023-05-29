@@ -3,10 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-cluster/
+
 # C extensions
 *.so
-*.argocd*
+
 # Distribution / packaging
 .Python
 build/

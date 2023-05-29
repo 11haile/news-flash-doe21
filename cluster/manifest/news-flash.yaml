@@ -8,7 +8,7 @@ metadata:
   name: news-flash-service
 spec:
   selector:
-    app: news-flash-service
+    app: flash-app-service
   ports:
     - protocol: "TCP"
       port: 5000
@@ -52,9 +52,54 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5000
+          env:
+            - name: NEWS_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: api-key-secret
+                  key: NEWS_API_KEY
+
 ---
 
 
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: news-flash
+  namespace: argocd
+spec:
+  description: News Flash Project
+  destinations:
+    - namespace: argocd
+      server: https://kubernetes.default.svc
+  sourceRepos:
+    - https://github.com/11haile/news-flash-doe21.git
+
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/news-flash"
+        backend:
+          service:
+            name: news-flash-service
+            port:
+              number: 5000
+      - pathType: Prefix
+        path: "/argocd"
+        backend:
+          service:
+            name: argocd-service
+            port:
+              number: 5000
 
 # kind: Pod
 # apiVersion: v1
