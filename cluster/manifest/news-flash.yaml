@@ -87,7 +87,7 @@ spec:
   - http:
       paths:
       - pathType: Prefix
-        path: "/news-flash"
+        path: "/flash"
         backend:
           service:
             name: news-flash-service
