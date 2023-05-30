@@ -93,7 +93,7 @@ spec:
             port:
               number: 5000
       - pathType: Prefix
-        path: "/argocd-serv"
+        path: "/argocd"
         backend:
           service:
             name: argocd-service
