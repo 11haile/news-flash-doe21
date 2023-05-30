@@ -70,7 +70,7 @@ metadata:
 spec:
   description: News Flash Project
   destinations:
-    - namespace: argocd
+    - namespace: news-flash
       server: https://kubernetes.default.svc
   sourceRepos:
     - https://github.com/11haile/news-flash-doe21.git
@@ -87,7 +87,7 @@ spec:
   - http:
       paths:
       - pathType: Prefix
-        path: "/flash"
+        path: "/news-flash"
         backend:
           service:
             name: news-flash-service
